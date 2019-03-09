@@ -6,6 +6,8 @@ public class ScanAction : Action
 {
     public override void Act(Controller controller)
     {
+        if (!controller.agent.isStopped)
+            controller.agent.isStopped = true;
         controller.transform.Rotate(0, 60 * Time.deltaTime, 0);
     }
 }

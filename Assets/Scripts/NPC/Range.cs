@@ -4,46 +4,46 @@ using UnityEditor;
 
 public class Range : MonoBehaviour
 {
-    public HashSet<string> tags_to_check = new HashSet<string>();
+    public string[] tags;
 
     private Dictionary<string, bool> tag_to_exist = new Dictionary<string, bool>();
     private Dictionary<string, Vector3> tag_to_pos = new Dictionary<string, Vector3>();
 
     private void Start()
     {
-        foreach (string tag in tags_to_check)
+        foreach (string tag in tags)
         {
             tag_to_exist[tag] = false;
             tag_to_pos[tag] = Vector3.zero;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        string collision_tag = collision.gameObject.tag;
+        string collision_tag = other.gameObject.tag;
 
-        if (tags_to_check.Contains(collision_tag))
+        if (tag_to_exist.ContainsKey(collision_tag))
         {
             tag_to_exist[collision_tag] = true;
-            tag_to_pos[collision_tag].Set(collision.transform.position.x, collision.transform.position.y, collision.transform.position.z);
+            tag_to_pos[collision_tag] = other.transform.position;
         }
 
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        string collision_tag = collision.gameObject.tag;
-        if (tags_to_check.Contains(collision_tag))
+        string collision_tag = other.gameObject.tag;
+        if (tag_to_exist.ContainsKey(collision_tag))
         {
             tag_to_exist[collision_tag] = true;
-            tag_to_pos[collision_tag].Set(collision.transform.position.x, collision.transform.position.y, collision.transform.position.z);
+            tag_to_pos[collision_tag] = other.transform.position;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        string collision_tag = collision.gameObject.tag;
-        if (tags_to_check.Contains(collision_tag))
+        string collision_tag = other.gameObject.tag;
+        if (tag_to_exist.ContainsKey(collision_tag))
         {
             tag_to_exist[collision_tag] = false;
         }
@@ -51,17 +51,14 @@ public class Range : MonoBehaviour
 
     public bool InRange(string thing)
     {
-        bool result;
-        tag_to_exist.TryGetValue(thing, out result);
+        bool result = tag_to_exist[thing];
         return result;
     }
 
     public Vector3 Position(string thing)
     {
-        Vector3 result;
-        if (tag_to_pos.TryGetValue(thing, out result))
-            return result;
-        else
-            return Vector3.zero;
+        Vector3 result = tag_to_pos[thing];
+        Debug.Log("Position of " + thing + ": " + result);
+        return result;
     }
 }

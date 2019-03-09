@@ -5,6 +5,7 @@ using System.Collections;
 public class ChaseAction : Action
 {
     public string chase_target;
+    public float speed = 1f;
 
     public override void Act(Controller controller)
     {
@@ -17,7 +18,7 @@ public class ChaseAction : Action
             //controller.transform.LookAt(target_pos);
             if (agent.isStopped)
                 agent.isStopped = false;
-
+            controller.agent.speed = speed;
             agent.SetDestination(target_pos);
         }
     }

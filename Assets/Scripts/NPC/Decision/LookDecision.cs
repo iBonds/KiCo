@@ -4,7 +4,7 @@ using System.Collections;
 [CreateAssetMenu(menuName = "KiCo/Decisions/Look")]
 public class LookDecision : Decision
 {
-    public string[] target_tags;
+    public string target;
 
     public override bool Decide(Controller controller)
     {
@@ -13,6 +13,6 @@ public class LookDecision : Decision
 
     private bool look(Controller controller)
     {
-        return controller.eyes.sees(target_tags[0]);
+        return controller.eyes.sees(target);
     }
 }

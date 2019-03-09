@@ -6,6 +6,7 @@ using System;
 public class RunFromAction : Action
 {
     public string tag_target;
+    public float speed = 1f;
 
     public override void Act(Controller controller)
     {
@@ -16,14 +17,12 @@ public class RunFromAction : Action
     {
         if (controller.range.InRange(tag_target))
         {
-            if (!controller.agent.isStopped)
-                controller.agent.isStopped = true;
+            if (controller.agent.isStopped)
+                controller.agent.isStopped = false;
 
             Vector3 direction = controller.transform.position - controller.range.Position(tag_target);
-            controller.transform.LookAt(2 * direction);
-            // transform.rotation = Quaternion.LookRotation(transform.position - target.position);
-            direction.y = 0;
-            controller.rb.MovePosition((controller.transform.position + direction) * Time.deltaTime * controller.character_speed);
+            controller.agent.speed = speed;
+            controller.agent.SetDestination(controller.transform.position + direction);
         }
     }
 }

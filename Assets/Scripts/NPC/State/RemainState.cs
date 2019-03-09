@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-public class RemainState : ScriptableObject
+public class RemainState : State
 {
-    
+    public override void UpdateState(Controller controller)
+    {
+        //throw new System.NotImplementedException();
+    }
 }

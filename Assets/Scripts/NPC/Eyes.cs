@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Eyes : MonoBehaviour
 {
-    public HashSet<string> tags_to_check = new HashSet<string>();
+    public string[] tags;
     public float fov = 110f;
 
     private Dictionary<string, bool> tag_to_exist = new Dictionary<string, bool>();
@@ -15,34 +15,34 @@ public class Eyes : MonoBehaviour
 
     private void Start()
     {
-        foreach (string tag in tags_to_check)
+        foreach (string tag in tags)
         {
             tag_to_exist[tag] = false;
             tag_to_pos[tag] = Vector3.zero;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        string collision_tag = collision.gameObject.tag;
+        string collision_tag = other.gameObject.tag;
 
-        if (tags_to_check.Contains(collision_tag))
+        if (tag_to_exist.ContainsKey(collision_tag))
         {
             RaycastHit hit;
-            Physics.Raycast(transform.position, collision.transform.position - transform.position, out hit);
+            Physics.Raycast(transform.position, other.transform.position - transform.position, out hit);
             if (hit.transform.CompareTag(collision_tag))
             {
                 tag_to_exist[collision_tag] = true;
-                tag_to_pos[collision_tag].Set(collision.transform.position.x, collision.transform.position.y, collision.transform.position.z);
+                tag_to_pos[collision_tag].Set(other.transform.position.x, other.transform.position.y, other.transform.position.z);
             }
         }
 
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        string collision_tag = collision.gameObject.tag;
-        if (tags_to_check.Contains(collision_tag))
+        string collision_tag = other.gameObject.tag;
+        if (tag_to_exist.ContainsKey(collision_tag))
         {
 
             //RaycastHit[] hits = Physics.RaycastAll(transform.position, collision.transform.position - transform.position);
@@ -60,17 +60,17 @@ public class Eyes : MonoBehaviour
 
             tag_to_exist[collision_tag] = false;
 
-            Vector3 direction = collision.transform.position - transform.position;
+            Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
 
             if(angle < fov * 0.5f)
             {
                 RaycastHit hit;
-                Physics.Raycast(transform.position, collision.transform.position - transform.position, out hit);
+                Physics.Raycast(transform.position, other.transform.position - transform.position, out hit);
                 if (hit.transform.CompareTag(collision_tag))
                 {
                     tag_to_exist[collision_tag] = true;
-                    tag_to_pos[collision_tag].Set(collision.transform.position.x, collision.transform.position.y, collision.transform.position.z);
+                    tag_to_pos[collision_tag].Set(other.transform.position.x, other.transform.position.y, other.transform.position.z);
                 }
             }
             
@@ -78,10 +78,10 @@ public class Eyes : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        string collision_tag = collision.gameObject.tag;
-        if (tags_to_check.Contains(collision_tag))
+        string collision_tag = other.gameObject.tag;
+        if (tag_to_exist.ContainsKey(collision_tag))
         {
             tag_to_exist[collision_tag] = false;
         }

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Controller : MonoBehaviour
 {
     public State currentState;
+    public float eyes_range = 10f;
     public Eyes eyes;
     public State remainState;
     public bool is_disabled = false;
@@ -16,10 +17,11 @@ public class Controller : MonoBehaviour
     public NavMeshAgent agent;
 
 
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        eyes = GetComponent<Eyes>();
+        eyes = GetComponentInChildren<Eyes>();
         range = GetComponentInChildren<Range>();
         rb = GetComponent<Rigidbody>();
     }
@@ -27,7 +29,11 @@ public class Controller : MonoBehaviour
     void Update()
     {
         if (is_disabled)
+        {
+            if (!agent.isStopped)
+                agent.isStopped = true;
             return;
+        }
         currentState.UpdateState(this);
     }
 
@@ -36,6 +42,7 @@ public class Controller : MonoBehaviour
         if (nextState != remainState)
         {
             currentState = nextState;
+            Gizmos.color = currentState.state_color;
         }
     }
 }
