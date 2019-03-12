@@ -1,23 +1,24 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CamFollow : MonoBehaviour
 {
-	public Transform player;
-	private Vector3 camOffSet;
-	[Range(0.01f, 1.0f)]
-	public float smoothness = 0.75f;
-	// Start is called before the first frame update
-	void Start()
-	{
-		camOffSet = transform.position - player.position;
-	}
+    public Transform player;
+    public float camSpeed = 10;
 
-	// Late update is called once per frame
-	void LateUpdate()
-	{
-		Vector3 newPos = player.position + camOffSet;
-		transform.position = Vector3.Slerp(transform.position, newPos, smoothness);
-	}
+    Vector3 offset;
+
+    void Start()
+    {
+        offset = transform.position- player.position;
+    }
+
+    void LateUpdate()
+    {
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation( player.position - transform.position), camSpeed * Time.deltaTime);
+
+        Vector3 newPos = player.position - player.forward * offset.z - player.up * offset.y;
+        transform.position = Vector3.Slerp(transform.position, newPos, Time.deltaTime * camSpeed);
+    }
 }
