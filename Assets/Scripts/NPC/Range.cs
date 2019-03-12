@@ -51,8 +51,14 @@ public class Range : MonoBehaviour
 
     public bool InRange(string thing)
     {
-        bool result = tag_to_exist[thing];
-        return result;
+        if (tag_to_exist.ContainsKey(thing))
+            return tag_to_exist[thing];
+        else
+        {
+            tag_to_exist[thing] = false;
+            tag_to_pos[thing] = Vector3.zero;
+            return false;
+        }
     }
 
     public Vector3 Position(string thing)

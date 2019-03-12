@@ -12,6 +12,6 @@ public class Location : Decision
     public override bool Decide(Controller controller)
     {
         current_location = controller.transform.position;
-        return Vector3.SqrMagnitude(location - current_location) < 1;
+        return Vector3.SqrMagnitude(location - current_location) < 4f;
     }
 }

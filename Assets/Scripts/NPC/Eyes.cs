@@ -6,6 +6,10 @@ public class Eyes : MonoBehaviour
 {
     public string[] tags;
     public float fov = 110f;
+    public float actual_fov;
+    public float angle;
+    public float sight_range = 12f;
+
 
     private Dictionary<string, bool> tag_to_exist = new Dictionary<string, bool>();
     private Dictionary<string, Vector3> tag_to_pos = new Dictionary<string, Vector3>();
@@ -15,6 +19,7 @@ public class Eyes : MonoBehaviour
 
     private void Start()
     {
+        actual_fov = fov * 0.5f;
         foreach (string tag in tags)
         {
             tag_to_exist[tag] = false;
@@ -30,10 +35,11 @@ public class Eyes : MonoBehaviour
         {
             RaycastHit hit;
             Physics.Raycast(transform.position, other.transform.position - transform.position, out hit);
+            
             if (hit.transform.CompareTag(collision_tag))
             {
                 tag_to_exist[collision_tag] = true;
-                tag_to_pos[collision_tag].Set(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+                tag_to_pos[collision_tag] = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
             }
         }
 
@@ -61,16 +67,18 @@ public class Eyes : MonoBehaviour
             tag_to_exist[collision_tag] = false;
 
             Vector3 direction = other.transform.position - transform.position;
-            float angle = Vector3.Angle(direction, transform.forward);
+            angle = Vector3.Angle(direction, transform.forward);
 
-            if(angle < fov * 0.5f)
+            if(angle < actual_fov)
             {
                 RaycastHit hit;
-                Physics.Raycast(transform.position, other.transform.position - transform.position, out hit);
-                if (hit.transform.CompareTag(collision_tag))
+                
+                Debug.DrawRay(transform.position, (other.transform.position - transform.position));
+                if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity)  && hit.transform.CompareTag(collision_tag))
                 {
+                    Debug.Log("hit");
                     tag_to_exist[collision_tag] = true;
-                    tag_to_pos[collision_tag].Set(other.transform.position.x, other.transform.position.y, other.transform.position.z);
+                    tag_to_pos[collision_tag] = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
                 }
             }
             
@@ -89,9 +97,14 @@ public class Eyes : MonoBehaviour
 
     public bool sees(string thing)
     {
-        bool result;
-        tag_to_exist.TryGetValue(thing, out result);
-        return result;
+        if (tag_to_exist.ContainsKey(thing))
+            return tag_to_exist[thing];
+        else
+        {
+            tag_to_exist[thing] = false;
+            tag_to_pos[thing] = Vector3.zero;
+            return false;
+        }
     }
 
     public Vector3 position(string thing)

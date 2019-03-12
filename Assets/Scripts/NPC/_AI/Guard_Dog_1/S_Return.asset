@@ -21,8 +21,9 @@ MonoBehaviour:
     true_state: {fileID: 11400000, guid: 1a7576852938d1f4ca00daad11879e8d, type: 2}
     false_prio: 0
     false_state: {fileID: 0}
-  - decision: {fileID: 11400000, guid: bc296c01161acf44da5fc0cf518e609b, type: 2}
+  - decision: {fileID: 11400000, guid: 2bc920319812fa24f9966091ffa42504, type: 2}
     true_prio: 1
     true_state: {fileID: 11400000, guid: f51a2c631b655524aa2f5208a58c9d4b, type: 2}
     false_prio: 0
     false_state: {fileID: 0}
+  debug: 0

@@ -8,6 +8,6 @@ public class ScanAction : Action
     {
         if (!controller.agent.isStopped)
             controller.agent.isStopped = true;
-        controller.transform.Rotate(0, 60 * Time.deltaTime, 0);
+        controller.transform.Rotate(0, 30 * Time.deltaTime, 0);
     }
 }

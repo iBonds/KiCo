@@ -81,8 +81,8 @@ public class LevelManager : MonoBehaviour
 					//access boxes
 					for (int i = 0; i < boxes.Length; i++)
 					{
-						boxes[i].gameObject.GetComponent<MeshRenderer>().enabled = true;
-						boxes[i].gameObject.GetComponent<Rigidbody>().enabled = true;
+						boxes[i].gameObject.SetActive(true);
+						//boxes[i].gameObject.GetComponent<Rigidbody>().enabled = true;
 					}
 					break;
 				}

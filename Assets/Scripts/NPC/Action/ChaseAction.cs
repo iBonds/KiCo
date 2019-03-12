@@ -6,6 +6,7 @@ public class ChaseAction : Action
 {
     public string chase_target;
     public float speed = 1f;
+    public Vector3 position_of_target;
 
     public override void Act(Controller controller)
     {
@@ -15,6 +16,7 @@ public class ChaseAction : Action
         if (eyes.sees(chase_target))
         {
             Vector3 target_pos = eyes.position(chase_target);
+            position_of_target = target_pos;
             //controller.transform.LookAt(target_pos);
             if (agent.isStopped)
                 agent.isStopped = false;

@@ -28,7 +28,7 @@ public class Checkpoints: MonoBehaviour
 			}
 		}
 
-		GameObject returnCurrCP() {
+		public GameObject returnCurrCP() {
 			foreach(GameObject checkpoint in CPList) {
 				if(checkpoint.GetComponent<Checkpoints>().activeCP == true) {
 

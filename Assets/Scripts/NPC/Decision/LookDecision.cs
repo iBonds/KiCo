@@ -5,6 +5,7 @@ using System.Collections;
 public class LookDecision : Decision
 {
     public string target;
+    public bool sees;
 
     public override bool Decide(Controller controller)
     {
@@ -13,6 +14,7 @@ public class LookDecision : Decision
 
     private bool look(Controller controller)
     {
-        return controller.eyes.sees(target);
+        sees = controller.eyes.sees(target);
+        return sees;
     }
 }

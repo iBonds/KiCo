@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Menu.unity
     guid: d92137e244207dd46aa85ab8014293cd
   - enabled: 1
-    path: Assets/_Scenes/npc_test.unity
+    path: Assets/_Scenes/level_1.unity
     guid: 544e86f2245e1f14f9e61c6dd31b0a0f
   m_configObjects: {}

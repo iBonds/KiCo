@@ -21,3 +21,4 @@ MonoBehaviour:
     true_state: {fileID: 0}
     false_prio: 0
     false_state: {fileID: 11400000, guid: f51a2c631b655524aa2f5208a58c9d4b, type: 2}
+  debug: 0

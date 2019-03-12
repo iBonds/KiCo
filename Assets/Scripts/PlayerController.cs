@@ -35,11 +35,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
   void FixedUpdate()
   {
-    dirVector = new Vector3(-1 * Input.GetAxis("Horizontal"), 0, -1 * Input.GetAxis("Vertical")).normalized;
+    //dirVector = new Vector3(-1 * Input.GetAxis("Horizontal"), 0, -1 * Input.GetAxis("Vertical")).normalized;
+    dirVector = Input.GetAxis("Vertical") * (transform.rotation * Vector3.forward); // Why doesn't dirVector*= transform.rotation work?
+
     rb.MovePosition(transform.position + dirVector * Time.deltaTime * (isRunning ? runningMultipler : 10));
 
-    if(dirVector != Vector3.zero)
-    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirVector), 0.2f);
+        Vector3 rotVector = new Vector3(0, Input.GetAxis("Horizontal"), 0);
+    if(rotVector != Vector3.zero)
+        transform.Rotate(rotVector);
 
     if (toJump && kitten.is_picked_up == false)
     {

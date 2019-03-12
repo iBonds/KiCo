@@ -6,6 +6,7 @@ public class BaseState : State
 {
     public Action[] actions;
     public Transition[] transitions;
+    public bool debug = false;
     
 
     public override void UpdateState(Controller controller)
@@ -39,6 +40,7 @@ public class BaseState : State
                 {
                     state = decision;
                     index = i;
+                    prio = transitions[i].true_prio;
                 }
                     
             }
@@ -48,12 +50,14 @@ public class BaseState : State
                 {
                     state = decision;
                     index = i;
+                    prio = transitions[i].false_prio;
                 }
             }
         }
         if (transitions.Length == 0)
             return;
-
+        if (debug)
+            Debug.Log(prio + " Transitioning to " + ((state) ? transitions[index].true_state : transitions[index].false_state));
         if (state)
             controller.TransitionToState(transitions[index].true_state);
         else
