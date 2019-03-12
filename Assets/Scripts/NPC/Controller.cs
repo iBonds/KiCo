@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Controller : MonoBehaviour
+public class Controller : MonoBehaviour, IDamageable
 {
     public State currentState;
+    public bool can_pick_up;
+    public bool can_damage;
+    public float health;
     public float eyes_range = 10f;
     public Eyes eyes;
     public State remainState;
@@ -15,8 +18,10 @@ public class Controller : MonoBehaviour
     public float character_speed = 1;
     public List<Transform> waypoints;
     public NavMeshAgent agent;
+    public Action interaction;
 
-
+    
+    [HideInInspector] public bool is_picked_up = false;
 
     void Awake()
     {
@@ -28,7 +33,7 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        if (is_disabled)
+        if (is_disabled || is_picked_up)
         {
             if (!agent.isStopped)
                 agent.isStopped = true;
@@ -39,10 +44,32 @@ public class Controller : MonoBehaviour
 
     public void TransitionToState(State nextState)
     {
+        if (nextState == null)
+            return;
+
         if (nextState != remainState)
         {
             currentState = nextState;
-            Gizmos.color = currentState.state_color;
         }
+    }
+
+    public void Interaction()
+    {
+        if(interaction)
+            interaction.Act(this);
+    }
+
+    public void doDamage()
+    {
+        if (can_damage)
+        {
+            health--;
+            onDeath();
+        }
+    }
+
+    public void onDeath()
+    {
+        Destroy(transform.gameObject);
     }
 }
