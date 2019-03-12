@@ -14,7 +14,7 @@ public class Yarn : MonoBehaviour, IPickupable, IDamageable {
 		isPickedUp = false;
 		maxHP = 1;
 		kico = GameObject.FindWithTag("mouth");
-		yarn = this.transform.parent.gameObject;
+		yarn = transform.gameObject;
 	}
 
 	void Update() {
@@ -38,13 +38,13 @@ public class Yarn : MonoBehaviour, IPickupable, IDamageable {
 	}
 	public void pickUp() {
 		isPickedUp = true;
-		yarn.GetComponent<Rigidbody>().isKinematic = true;
+		//yarn.GetComponent<Rigidbody>().isKinematic = true;
 		yarn.transform.SetParent(kico.transform);
 		yarn.transform.position = kico.transform.position;
 	}
 	public void putDown() {
 		isPickedUp = false;
-		yarn.GetComponent<Rigidbody>().isKinematic = false;
+		//yarn.GetComponent<Rigidbody>().isKinematic = false;
 		yarn.transform.SetParent(null);
 	}
 

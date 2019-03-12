@@ -13,8 +13,8 @@ public class LevelManager : MonoBehaviour
 	public bool atExit;			//If the player is at the exit point in the level
 	public bool levelComplete;		//Has the player completed all stages (ie. reached max progressInLevel)
 
-	public GameObject collectible;	//Collectible for fetch quest (ie. yarn, etc.)
-	public int targetAmount;		//Amount needed in fetch quest for level
+//	public GameObject collectible;	//Collectible for fetch quest (ie. yarn, etc.)
+	//public int targetAmount;		//Amount needed in fetch quest for level
 	public GameObject levelExit;	//What gameObject is designated as the exit point
 
 	public GameObject[] enemies = new GameObject[5];	//All the enemies in the level, placed in accordingly
@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
 		progressInLevel = 0;
 		levelComplete = false;
 		boxes = GameObject.FindGameObjectsWithTag("box");
-
+		currCP = checkpoints.returnCurrCP();
 
 		//Start Gameplay for the level
 		StartCoroutine (GamePlay());
