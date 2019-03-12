@@ -25,7 +25,7 @@ public class BaseState : State
 
     private void CheckTransitions(Controller controller)
     {
-        int index = 0;
+        int index = -1;
         int prio = -1;
         bool state = false;
 
@@ -51,6 +51,8 @@ public class BaseState : State
                 }
             }
         }
+        if (transitions.Length == 0)
+            return;
 
         if (state)
             controller.TransitionToState(transitions[index].true_state);

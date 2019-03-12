@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: A_Roam
   m_EditorClassIdentifier: 
   waypoints:
-  - {x: 10, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 10}
-  - {x: 20, y: 0, z: 20}
-  - {x: 20, y: 0, z: 0}
+  - {x: -125.7, y: 35, z: -221.1}
+  - {x: -109.2, y: 35, z: -116}
+  - {x: 81.4, y: 35, z: -116}
+  - {x: 77.07, y: 35, z: -199.7}
   waypoint: 0
-  speed: 7.52
+  speed: 5
