@@ -9,6 +9,16 @@ public class RoamAction : Action
     public int waypoint = 0;
     public float speed = 1f;
 
+    private void Awake()
+    {
+        waypoint = 0;
+    }
+
+    private void OnEnable()
+    {
+        waypoint = 0;
+    }
+
     public override void Act(Controller controller)
     {
         Roam(controller);
