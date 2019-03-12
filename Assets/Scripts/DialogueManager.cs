@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
 	public Text nameText;
 	public Text dialogueText;
-	public Queue<string> sentences;
+	public string[] sentencesArr;
 	public GameObject canvas;
+	public int currsentence;
 
     // Start is called before the first frame update
     void Start()
     {
-		sentences = new Queue<string>();
+		sentencesArr = new string[5];
+		currsentence = 0;
     }
 
 	public void StartDialogue (Dialogue dialogue)
@@ -23,11 +26,14 @@ public class DialogueManager : MonoBehaviour
 
 		nameText.text = dialogue.name;
 
-		sentences.Clear();
+		Array.Clear(sentencesArr, 0, 4);
+
+		int i = 0;
 
 		foreach (string sentence in dialogue.sentences)
 		{
-			sentences.Enqueue(sentence);
+			sentencesArr[i] = sentence;
+			i++;
 		}
 
 		DisplayNextSentence();
@@ -35,13 +41,13 @@ public class DialogueManager : MonoBehaviour
 
 	public void DisplayNextSentence ()
 	{
-		if (sentences.Count == 0)
+		if (sentencesArr.Length == 0)
 		{
 			EndDialogue();
 			return;
 		}
 
-		string sentence = sentences.Dequeue();
+		string sentence = sentencesArr[currsentence];
 		dialogueText.text = sentence;
 	}
 

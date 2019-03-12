@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
-  public float runningMultipler = 2;
+  public float runningMultipler = 15;
   public float jumpHeight = 1f;
   public bool toJump;
   public bool isRunning;
-  public Kitten withKitten;
+  public Controller kitten;
   private Vector3 dirVector;
   public int health = 3;
   public float timeLastHit = 0f;
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     boxCollider = GetComponent<BoxCollider>();
     distanceToGround = GetComponent<Collider>().bounds.extents.y;
     local_scale = transform.localScale;
+        kitten = GameObject.FindGameObjectWithTag("kitten").GetComponent<Controller>();
   }
 
   bool IsGrounded()
@@ -34,13 +35,13 @@ public class PlayerController : MonoBehaviour, IDamageable
 
   void FixedUpdate()
   {
-    dirVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-    rb.MovePosition(transform.position + dirVector * Time.deltaTime * (isRunning ? runningMultipler : 1));
+    dirVector = new Vector3(-1 * Input.GetAxis("Horizontal"), 0, -1 * Input.GetAxis("Vertical")).normalized;
+    rb.MovePosition(transform.position + dirVector * Time.deltaTime * (isRunning ? runningMultipler : 10));
 
     if(dirVector != Vector3.zero)
     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dirVector), 0.2f);
 
-    if (toJump && withKitten.hasKitten == false)
+    if (toJump && kitten.is_picked_up == false)
     {
       rb.AddForce(transform.up * Mathf.Sqrt(2f * jumpHeight * gravity), ForceMode.VelocityChange);
       toJump = false;
@@ -58,12 +59,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
   void OnTriggerEnter(Collider other)
   {
-    if (other.CompareTag("dog"))
+    if (other.CompareTag("Dog"))
     doDamage();
   }
   void OnTriggerStay(Collider other)
   {
-    if (other.CompareTag("dog"))
+    if (other.CompareTag("Dog"))
     doDamage();
   }
 
