@@ -76,7 +76,7 @@ public class Eyes : MonoBehaviour
                 Debug.DrawRay(transform.position, (other.transform.position - transform.position));
                 if (Physics.Raycast(transform.position, direction, out hit, Mathf.Infinity)  && hit.transform.CompareTag(collision_tag))
                 {
-                    Debug.Log("hit");
+                    //Debug.Log("hit");
                     tag_to_exist[collision_tag] = true;
                     tag_to_pos[collision_tag] = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z);
                 }

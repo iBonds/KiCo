@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
   bool IsGrounded()
   {
-    return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.1f);
+    return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.3f);
   }
 
   void FixedUpdate()
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     if(rotVector != Vector3.zero)
         transform.Rotate(rotVector);
 
-    if (toJump && kitten.is_picked_up == false)
+    if (toJump && !kitten.is_picked_up)
     {
       rb.AddForce(transform.up * Mathf.Sqrt(2f * jumpHeight * gravity), ForceMode.VelocityChange);
       toJump = false;

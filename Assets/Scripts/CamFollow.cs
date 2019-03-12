@@ -15,10 +15,11 @@ public class CamFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        Vector3 rot = player.position - transform.position;
+        rot.y = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rot), camSpeed * Time.deltaTime);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation( player.position - transform.position), camSpeed * Time.deltaTime);
-
-        Vector3 newPos = player.position - player.forward * offset.z - player.up * offset.y;
+        Vector3 newPos = player.position - player.forward * offset.z + player.up * offset.y;
         transform.position = Vector3.Slerp(transform.position, newPos, Time.deltaTime * camSpeed);
     }
 }
