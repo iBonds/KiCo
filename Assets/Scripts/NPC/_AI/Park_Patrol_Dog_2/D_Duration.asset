@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a828a8fd3667ad14b9f0190f27f95876, type: 3}
-  m_Name: Remain
+  m_Script: {fileID: 11500000, guid: 1063431768f98bf44b1b61b4022a8433, type: 3}
+  m_Name: D_Duration
   m_EditorClassIdentifier: 
-  state_color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  actions: []
-  transitions: []
+  time_since_last_update: 0
+  duration: 5
