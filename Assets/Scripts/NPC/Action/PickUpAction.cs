@@ -23,15 +23,17 @@ public class PickUpAction : Action
     void PickUp(Controller controller)
     {
         controller.is_picked_up = true;
-        controller.GetComponent<Rigidbody>().isKinematic = true;
+        //controller.GetComponent<Rigidbody>().isKinematic = true;
         controller.transform.SetParent(player_mouth.transform);
-        controller.transform.position = player_mouth.transform.position;
+        //controller.transform.position = player_mouth.transform.position;
+        //controller.transform.position = Vector3.zero;
+        controller.transform.localPosition = Vector3.zero;
     }
 
     void PutDown(Controller controller)
     {
         controller.is_picked_up = false;
-        controller.GetComponent<Rigidbody>().isKinematic = false;
+        //controller.GetComponent<Rigidbody>().isKinematic = false;
         controller.transform.SetParent(null);
     }
 }

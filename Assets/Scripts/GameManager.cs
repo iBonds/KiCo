@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 	void InitializeGame()
 	{
 		currlvl = 0;
-		SceneManager.LoadScene("MainMenu");
+		SceneManager.LoadScene("main_menu");
 	}
 
 	void PlayGame()
@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
 
 	public void GameOver()
 	{
-		SceneManager.LoadScene("MainMenu");
-	}
+		SceneManager.LoadScene("main_menu");
+
+    }
 }
