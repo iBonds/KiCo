@@ -6,7 +6,6 @@ public class Yarn : MonoBehaviour, IPickupable, IDamageable {
   public bool isPickedUp;
   public int maxHP;
   public bool inRange;
-  public LevelManager lvlScript;
   GameObject kico;
   GameObject yarn;
 
@@ -33,7 +32,6 @@ public class Yarn : MonoBehaviour, IPickupable, IDamageable {
     maxHP--;
   }
   public void onDeath() {
-    lvlScript.amountGiven = lvlScript.amountGiven + 1;
     Destroy(yarn);
   }
   public void pickUp() {
