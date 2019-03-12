@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f0c89201cf63e545ba514da737ef992, type: 3}
-  m_Name: A_Roam
+  m_Name: A_patrol
   m_EditorClassIdentifier: 
   waypoints:
-  - {x: -125.7, y: 35, z: -221.1}
-  - {x: -109.2, y: 35, z: -116}
-  - {x: 81.4, y: 35, z: -116}
-  - {x: 77.07, y: 35, z: -199.7}
-  waypoint: 0
+  - {x: 20, y: 1.5, z: 20}
+  - {x: -20, y: 1.5, z: 20}
+  - {x: 20, y: 1.5, z: 0}
+  waypoint: 1
   speed: 5

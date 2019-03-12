@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: A_RunFrom_Dog
   m_EditorClassIdentifier: 
   tag_target: Dog
-  speed: 1
+  speed: 10

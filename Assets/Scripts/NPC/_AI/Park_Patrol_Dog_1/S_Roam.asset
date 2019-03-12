@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a828a8fd3667ad14b9f0190f27f95876, type: 3}
+  m_Name: S_Roam
+  m_EditorClassIdentifier: 
+  state_color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  actions:
+  - {fileID: 11400000, guid: 3acf59297ceaeed45a991335ef79e1ef, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 50e6615b36b7f3341a90cf030c46764d, type: 2}
+    true_prio: 2
+    true_state: {fileID: 11400000, guid: ca91f9bd98db37745813a723d9735b14, type: 2}
+    false_prio: 0
+    false_state: {fileID: 0}
+  - decision: {fileID: 11400000, guid: 887cc80a572cbb74fb1ffa7048e5c511, type: 2}
+    true_prio: 1
+    true_state: {fileID: 11400000, guid: 1bc6de4d6062f5548b325fbc5ea63eb6, type: 2}
+    false_prio: 0
+    false_state: {fileID: 0}
