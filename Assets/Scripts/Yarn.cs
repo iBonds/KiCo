@@ -6,7 +6,7 @@ public class Yarn : MonoBehaviour, IPickupable, IDamageable {
 	public bool isPickedUp;
 	public int maxHP;
 	public bool inRange;
-	//public LevelManager lvlScript;
+	public LevelManager lvlScript;
 	GameObject kico;
 	GameObject yarn;
 
@@ -15,7 +15,8 @@ public class Yarn : MonoBehaviour, IPickupable, IDamageable {
 		maxHP = 1;
 		kico = GameObject.FindWithTag("mouth");
 		yarn = transform.gameObject;
-	}
+        lvlScript = GameObject.FindWithTag("lvl").GetComponent<LevelManager>();
+    }
 
 	void Update() {
 		if(Input.GetKeyDown("z") && isPickedUp)
@@ -33,7 +34,7 @@ public class Yarn : MonoBehaviour, IPickupable, IDamageable {
 		maxHP--;
 	}
 	public void onDeath() {
-		//lvlScript.amountGiven = lvlScript.amountGiven + 1;
+		lvlScript.amountGiven = lvlScript.amountGiven + 1;
 		Destroy(yarn);
 	}
 	public void pickUp() {

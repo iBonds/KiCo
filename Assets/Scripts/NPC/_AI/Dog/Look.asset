@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca049d831cf85d340977328f0e59b4a7, type: 3}
   m_Name: Look
   m_EditorClassIdentifier: 
-  target_tags:
-  - Player
+  target: Player
+  sees: 0

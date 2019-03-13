@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -767,8 +767,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 153}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 133}
+  m_SizeDelta: {x: 90, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037152006
 MonoBehaviour:
@@ -1072,8 +1072,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "You are Kico, a mother cat in search of her kittens after they were whisked
-    away in a storm! \n\nControls:\nMovement: WASD or Arrow Keys\nJump: Spacebar\nInteract
-    with Objects/NPCs: Z\nShift: Run\nCrouch: Ctrl"
+    away in a storm! \n\nYou can take three hits, and have three lives. So you got
+    9 chances.\nControls:\nMovement: WASD or Arrow Keys\nJump: Spacebar\nInteract
+    with Objects/NPCs: Z\nShift: Run"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1142,10 +1143,10 @@ MonoBehaviour:
   m_margin: {x: -410.70773, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1372065850}
-    characterCount: 191
+    characterCount: 202
     spriteCount: 0
     spaceCount: 36
-    wordCount: 35
+    wordCount: 36
     linkCount: 0
     lineCount: 9
     pageCount: 1

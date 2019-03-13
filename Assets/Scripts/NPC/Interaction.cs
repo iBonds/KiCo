@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    bool in_range;
+    public bool in_range;
     bool to_interact;
     Controller controller;
 
@@ -24,6 +24,8 @@ public class Interaction : MonoBehaviour
     {
         if (Input.GetKeyDown("z") && in_range)
             to_interact = true;
+        else
+            to_interact = false;
     }
 
     private void FixedUpdate()

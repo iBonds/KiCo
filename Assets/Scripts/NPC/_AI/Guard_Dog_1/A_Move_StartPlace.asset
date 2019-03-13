@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: A_Move_StartPlace
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0, z: -200}
-  speed: 2
+  speed: 3

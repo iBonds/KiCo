@@ -22,6 +22,7 @@ public class Controller : MonoBehaviour, IDamageable
 
     
     [HideInInspector] public bool is_picked_up = false;
+    [HideInInspector] public GameObject player_mouth;
 
     void Awake()
     {
@@ -29,12 +30,15 @@ public class Controller : MonoBehaviour, IDamageable
         eyes = GetComponentInChildren<Eyes>();
         range = GetComponentInChildren<Range>();
         rb = GetComponent<Rigidbody>();
+        player_mouth = GameObject.FindGameObjectWithTag("mouth");
     }
 
     void Update()
     {
         if (is_disabled || is_picked_up)
         {
+            if (is_picked_up)
+                transform.localPosition = Vector3.zero;
             if (!agent.isStopped)
                 agent.isStopped = true;
             return;

@@ -15,4 +15,5 @@ MonoBehaviour:
   waypoints:
   - {x: 10, y: 0.5, z: 10}
   - {x: -10, y: 0.5, z: -10}
-  waypoint: 1
+  waypoint: 0
+  speed: 3

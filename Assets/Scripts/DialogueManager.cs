@@ -51,6 +51,11 @@ public class DialogueManager : MonoBehaviour
 		dialogueText.text = sentence;
 	}
 
+    public void Clean()
+    {
+        dialogueText.text = "";
+        nameText.text = "";
+    }
 	void EndDialogue()
 	{
 		Debug.Log("End of conversation");

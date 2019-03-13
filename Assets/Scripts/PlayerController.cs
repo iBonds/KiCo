@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour, IDamageable
   private Vector3 dirVector;
   public int health = 3;
   public float timeLastHit = 0f;
+    public bool is_dead = false;
 
   private Vector3 local_scale;
   private Rigidbody rb;
@@ -26,7 +27,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     distanceToGround = GetComponent<Collider>().bounds.extents.y;
     local_scale = transform.localScale;
         kitten = GameObject.FindGameObjectWithTag("kitten").GetComponent<Controller>();
-  }
+        cv = GameObject.Find("Flash").GetComponent<FlashCanvas>();
+    }
 
   bool IsGrounded()
   {
@@ -44,8 +46,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     if(rotVector != Vector3.zero)
         transform.Rotate(rotVector);
 
-    if (toJump && !kitten.is_picked_up)
-    {
+    if (toJump)// && !kitten.is_picked_up
+        {
       rb.AddForce(transform.up * Mathf.Sqrt(2f * jumpHeight * gravity), ForceMode.VelocityChange);
       toJump = false;
     }
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
   void Update()
   {
+        if (transform.position.y < -0.5f)
+            is_dead = true;
     if(health <= 0) {
       onDeath();
     }
@@ -81,7 +85,8 @@ public class PlayerController : MonoBehaviour, IDamageable
   }
 
   public void onDeath() {
-    cv.playerDamaged();
-    Application.LoadLevel("Start Menu");
+        //cv.playerDamaged();
+        //Application.LoadLevel("Start Menu");
+        is_dead = true;
   }
 }

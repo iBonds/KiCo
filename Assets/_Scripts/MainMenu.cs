@@ -7,7 +7,8 @@ public class MainMenu : MonoBehaviour
 {
 	public void PlayGame()
 	{
-		SceneManager.LoadScene("npc_test");
+        //SceneManager.LoadScene("level_1");
+        GameManager.instance.PlayGame();
 	}
 
 	public void QuitGame()

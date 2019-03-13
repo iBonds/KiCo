@@ -23,5 +23,5 @@ MonoBehaviour:
   - {x: 258.3, y: 0.5, z: -84.6}
   - {x: -33, y: 0.5, z: -84.6}
   - {x: -33, y: 0.5, z: 44}
-  waypoint: 1
+  waypoint: 0
   speed: 20
